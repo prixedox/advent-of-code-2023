@@ -10,20 +10,22 @@ TEXT_NUMBERS = {"one":"1",
                 }
 
 
-
 class StringParser:
 
     def __init__(self):
         pass
 
     
-    def get_first_and_last_numbers(self, string_array: list) -> list:
+    def get_first_and_last_numbers(self, string_array: list, extract_text: bool) -> list:
         numbers_string_array: list = []
         for string in string_array:
-            # part 1
-            numbers_string = self.__extract_numbers(string)
-            # part 2
-            #numbers_string = self.__extract_text_numbers(string)
+            if not extract_text:
+                # part 1
+                numbers_string = self.__extract_numbers(string)
+            else:
+                # part 2
+                numbers_string = self.__extract_text_numbers(string)
+            
             first_last = numbers_string[0] + numbers_string[-1]
             numbers_string_array.append(first_last)
         
@@ -49,6 +51,5 @@ class StringParser:
                 if key == string[start_index:i+1]:
                     numbers.append(TEXT_NUMBERS[key])
 
-        
         return "".join(numbers)
             
