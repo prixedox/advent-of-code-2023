@@ -1,8 +1,8 @@
 from src.TaskSolver import TaskSolver
 
-FILENAME = "input-sm.txt"
+#FILENAME = "input-sm.txt"
 #FILENAME = "input-sm2.txt"
-#FILENAME = "input.txt"
+FILENAME = "input.txt"
 
 PART_TWO = True
 
