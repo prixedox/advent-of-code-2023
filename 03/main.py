@@ -9,6 +9,6 @@ PART_TWO = True
 def main():
     ts = TaskSolver()
     result = ts.solve(FILENAME, PART_TWO)
-    print(result) #part 1 = 54951, part 2 = 55218
+    print(result)
 
 main()
