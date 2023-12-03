@@ -1,7 +1,6 @@
 from .FileReader import FileReader
 from .StringParser import StringParser
-
-MAXES = [12, 13, 14]
+from .SumHandler import SumHandler
 
 class TaskSolver:
 
@@ -14,7 +13,9 @@ class TaskSolver:
         
         sp = StringParser(string_array)
         numbers_positions = sp.get_numbers_with_positions()
-        print(sp.board_size)
+        
+        sh = SumHandler()
+        sum_ = sh.sum_list_strings(numbers_positions)
         
 
-        return numbers_positions
+        return sum_

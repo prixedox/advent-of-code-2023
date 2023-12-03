@@ -13,4 +13,11 @@ class FileReader():
         string_array = []
         with open(self.file_path, 'r') as f:
             string_array = f.readlines()
-        return string_array
+        
+        string_array_strip = []
+        for string in string_array:
+            string_array_strip.append(string.strip())
+        return string_array_strip
+    
+    def get_array_splitlines(self):
+        return open(self.file_path).read().splitlines()
