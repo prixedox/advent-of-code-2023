@@ -27,6 +27,9 @@ class TaskSolver:
     
     def solve_task_two(self, string_array):
         sp = StringParser(string_array)
-        numbers_positions = sp.get_numbers_adjaced_numbers()
-        
-        return numbers_positions
+        numbers_to_mult = sp.get_numbers_adjaced_numbers()
+
+        sh = SumHandler()
+        sum_ = sh.mult_and_sum(numbers_to_mult)
+
+        return sum_

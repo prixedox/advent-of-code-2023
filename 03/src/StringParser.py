@@ -67,33 +67,25 @@ class StringParser:
     def get_numbers_adjaced_numbers(self):
         star_positions = self.get_star_positions()
         digit_positions = self.get_numbers_adjaced_star(star_positions)
-        numbers_adjaced_numbers = []
-        for digit_group in digit_positions:
-            if len(digit_group) < 2:
+        number_positions = self.get_star_groups(digit_positions)
+
+        numbers_to_mult = []
+        for number_group in number_positions:
+            if len(number_group) < 2:
                 continue
-            for digit_position in digit_group:
+            number_group_list = []
+            for number_position in number_group:
+                i = number_position[1]
                 number = ""
-                
-                if digit_position[1] - 1 > 0 and self.string_array[digit_position[1] - 1].isdigit():
-                    if digit_position[1] - 2 > 0 and self.string_array[digit_position[1] - 2].isdigit():
-                        number += self.string_array[digit_position[1] - 2]
-                        number += self.string_array[digit_position[1] - 1]
-                    else:
-                        number += self.string_array[digit_position[1]]
-                else:
-                    number += self.string_array[digit_position[1]]
-                
-                if digit_position[1] - 1 < len(self.string_array[0]) and self.string_array[digit_position[1] + 1].isdigit():
-                    number += self.string_array[digit_position[1] + 1]
-                    if digit_position[1] - 1 < len(self.string_array[0]) and self.string_array[digit_position[1] + 2].isdigit():
-                        number += self.string_array[digit_position[1] + 2]
-                
-                print(number)
-                
-                
-                        
+                while i < len(self.string_array[0]) and self.string_array[number_position[0]][i].isdigit():
+                    number += self.string_array[number_position[0]][i]
+                    i += 1
+                number_group_list.append(number)
+            numbers_to_mult.append(number_group_list)
         
-        return digit_positions
+                
+                
+        return numbers_to_mult
     
     def get_star_positions(self):
         star_positions = []
@@ -109,9 +101,25 @@ class StringParser:
             digit_positions = []
             for i in [star_position[0] - 1, star_position[0], star_position[0] + 1]:
                 for j in [star_position[1] - 1, star_position[1], star_position[1] + 1]:
+                    if i < 0 or i > len(self.string_array) - 1 or j < 0 or j > len(self.string_array[0]) - 1:
+                        continue
                     if self.string_array[i][j].isdigit():
                         digit_positions.append([i, j])
             all_digit_positions.append(digit_positions)
         
         return all_digit_positions
+    
+    def get_star_groups(self, digit_positions):
+        star_groups = []
+        first_pos = set()
+        for digit_group in digit_positions:
+            first_pos = set()
+            for digit_position in digit_group:
+                i = digit_position[1]
+                while i >= 0 and self.string_array[digit_position[0]][i].isdigit():
+                    i -= 1
+                first_pos.add((digit_position[0], i+1))
+            star_groups.append(first_pos)
+        
+        return star_groups
     
