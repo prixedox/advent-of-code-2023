@@ -63,3 +63,55 @@ class StringParser:
             j_end = self.board_size[1] - 1
         
         return [i_start, i_end, j_start, j_end]
+
+    def get_numbers_adjaced_numbers(self):
+        star_positions = self.get_star_positions()
+        digit_positions = self.get_numbers_adjaced_star(star_positions)
+        numbers_adjaced_numbers = []
+        for digit_group in digit_positions:
+            if len(digit_group) < 2:
+                continue
+            for digit_position in digit_group:
+                number = ""
+                
+                if digit_position[1] - 1 > 0 and self.string_array[digit_position[1] - 1].isdigit():
+                    if digit_position[1] - 2 > 0 and self.string_array[digit_position[1] - 2].isdigit():
+                        number += self.string_array[digit_position[1] - 2]
+                        number += self.string_array[digit_position[1] - 1]
+                    else:
+                        number += self.string_array[digit_position[1]]
+                else:
+                    number += self.string_array[digit_position[1]]
+                
+                if digit_position[1] - 1 < len(self.string_array[0]) and self.string_array[digit_position[1] + 1].isdigit():
+                    number += self.string_array[digit_position[1] + 1]
+                    if digit_position[1] - 1 < len(self.string_array[0]) and self.string_array[digit_position[1] + 2].isdigit():
+                        number += self.string_array[digit_position[1] + 2]
+                
+                print(number)
+                
+                
+                        
+        
+        return digit_positions
+    
+    def get_star_positions(self):
+        star_positions = []
+        for i, string in enumerate(self.string_array):
+            for j, char in enumerate(string):
+                if char == "*":
+                    star_positions.append([i, j])
+        return star_positions
+    
+    def get_numbers_adjaced_star(self, star_positions):
+        all_digit_positions = []
+        for star_position in star_positions:
+            digit_positions = []
+            for i in [star_position[0] - 1, star_position[0], star_position[0] + 1]:
+                for j in [star_position[1] - 1, star_position[1], star_position[1] + 1]:
+                    if self.string_array[i][j].isdigit():
+                        digit_positions.append([i, j])
+            all_digit_positions.append(digit_positions)
+        
+        return all_digit_positions
+    
