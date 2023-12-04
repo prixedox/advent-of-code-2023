@@ -1,6 +1,6 @@
 from .FileReader import FileReader
 from .StringParser import StringParser
-from .SumHandler import SumHandler
+from .CompareHandler import CompareHandler
 
 class TaskSolver:
 
@@ -8,4 +8,13 @@ class TaskSolver:
         pass
     
     def solve(self, filename, is_part_two):
-        pass
+        fr = FileReader(filename)
+
+        string_array = fr.get_string_array()
+        sp = StringParser(string_array)
+        games_array = sp.get_game_array()
+
+        ch = CompareHandler()
+        games_points = ch.get_points_per_game(games_array)
+
+        return games_points
