@@ -17,9 +17,12 @@ class TaskSolver:
 
         if is_part_two:
             se = SeedExtender()
-            info["seeds"] = se.extend_seed(info["seeds"])
-
+            info["seeds"] = se.get_seeds_boundary(info["seeds"])
+        print(info)
         t = Traverser()
-        locations = t.get_seeds_location(info)
-        print(locations)
-        return min(locations)
+        if not is_part_two:
+            locations = t.get_seeds_location(info)
+            return min(locations)
+        else:
+            minimum = t.traverse_backwards(info)
+            return minimum
