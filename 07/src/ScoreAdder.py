@@ -2,8 +2,8 @@ from .CardComparer import CardComparer
 
 class ScoreAdder:
 
-    def __init__(self):
-        self.cc = CardComparer()
+    def __init__(self, is_part_two):
+        self.cc = CardComparer(is_part_two)
 
     def sort_cards(self, cards_list):
         for i in range(len(cards_list)):
@@ -16,6 +16,7 @@ class ScoreAdder:
 
     def get_total_winnings(self, cards_list, score_dict):
         cards_list = self.sort_cards(cards_list)
+        print(cards_list)
         total_winnings = 0
         for i, cards in enumerate(cards_list):
             total_winnings += int(score_dict[cards]) * (i + 1)

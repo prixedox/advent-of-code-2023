@@ -15,7 +15,7 @@ class TaskSolver:
         sp = StringParser(string_array)
         cards_list, score_dict = sp.parse_cards_and_score()
 
-        sa = ScoreAdder()
+        sa = ScoreAdder(is_part_two)
         total_winnings = sa.get_total_winnings(cards_list, score_dict)
         
 
