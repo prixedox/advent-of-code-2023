@@ -1,6 +1,7 @@
 from .FileReader import FileReader
 from .StringParser import StringParser
 from .Traverser import Traverser
+from .LowestCommonMultiple import LowestCommonMultiple
 
 class TaskSolver:
 
@@ -15,6 +16,11 @@ class TaskSolver:
         sp = StringParser(string_array)
         path, map_ = sp.parse_array()
         t = Traverser()
-        steps = t.traverse(path, map_)
+        if not is_part_two:
+            steps = t.traverse(path, map_)
+        else:
+            steps = t.traverse_multiple(path, map_)
+            lcm = LowestCommonMultiple()
+            steps = lcm.calculate_lcm(steps)
 
         return steps
