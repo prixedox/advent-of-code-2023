@@ -16,6 +16,6 @@ class TaskSolver:
         lines = sp.parse_array()
 
         sh = SumHandler()
-        result = sh.make_sum(lines)
+        result = sh.make_sum(lines, is_part_two)
 
         return sum(result)

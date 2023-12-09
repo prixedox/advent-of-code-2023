@@ -38,6 +38,7 @@ class Predictor:
 
 #vals = [0,3,6,9,12,15]
 #vals = [1,3,6,10,15,21]
-# vals = [10, 13, 16, 21, 30, 45]
-# p = Predictor(vals)
-# print(p.get_predicted_values())
+#vals = [10, 13, 16, 21, 30, 45]
+#vals = vals[::-1]
+#p = Predictor(vals)
+#print(p.get_predicted_values())
