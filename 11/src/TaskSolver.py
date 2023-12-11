@@ -17,9 +17,9 @@ class TaskSolver:
         grid = sp.parse_array()
 
         e = Expander(grid)
-        grid = e.expand()
+        empty_indexes = e.get_empty_lines()
 
-        gd = GalaxyDistance(grid)
+        gd = GalaxyDistance(grid, empty_indexes)
         sum_ = gd.get_galaxy_distance()
         
         return sum_
