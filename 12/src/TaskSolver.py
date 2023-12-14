@@ -17,9 +17,13 @@ class TaskSolver:
         springs, numbers = sp.parse_array()
 
         p = Possibilities()
-        pos_springs = p.extend(springs)
+        
+        if not is_part_two:
+            pos_springs = p.extend(springs)
 
-        f = Filter()
-        sum_ = f.filter(pos_springs, numbers)
+            f = Filter()
+            sum_ = f.filter(pos_springs, numbers)
+        else:
+            sum_ = p.get_number_of_possibilities(springs, numbers)
         
         return sum_
