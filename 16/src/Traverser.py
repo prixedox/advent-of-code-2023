@@ -35,7 +35,7 @@ class Traverser:
     def traverse(self, cur_pos, cur_dir):
         self.visited = np.zeros((self.grid.shape))
         self.unique = np.zeros((self.grid.shape))
-
+        position_movements = set()
         cur_positions = [cur_pos]
         cur_directions = [cur_dir]
         since_last_change = 0
@@ -50,7 +50,7 @@ class Traverser:
             #print(last_sum, since_last_change)
             i = 0
             
-            while i < len(cur_positions):                
+            while i < len(cur_positions):
                 
                 if cur_positions[i][0] < 0 or cur_positions[i][1] < 0 or \
                 cur_positions[i][0] >= self.grid.shape[0] or cur_positions[i][1] >= self.grid.shape[1]:
@@ -58,9 +58,13 @@ class Traverser:
                     del cur_directions[i]
                     continue
                 
-
+                position_movement = (cur_positions[i][0], cur_positions[i][1], cur_directions[i][0], cur_directions[i][1])
+                if position_movement in position_movements:
+                    del cur_positions[i]
+                    del cur_directions[i]
+                    continue
                 
-
+                position_movements.add(position_movement)
                 self.visited[cur_positions[i][0], cur_positions[i][1]] = 1
 
                 char_pos = self.grid[cur_positions[i][0], cur_positions[i][1]]
