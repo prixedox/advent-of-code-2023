@@ -16,6 +16,6 @@ class TaskSolver:
         grid = sp.parse_array()
 
         t = Traverser(grid)
-        heat = t.traverse()
+        heat = t.traverse_2()
 
         return heat
