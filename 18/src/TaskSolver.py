@@ -1,6 +1,7 @@
 from .FileReader import FileReader
 from .StringParser import StringParser
 from .Traverser import Traverser
+from .Shoelace import Shoelace
 
 class TaskSolver:
 
@@ -15,7 +16,9 @@ class TaskSolver:
         sp = StringParser(string_array)
         lines = sp.parse_array()
 
-        t = Traverser(lines)
-        sum_ = t.traverse()
+        # t = Traverser(lines)
+        # sum_ = t.traverse()
+        sl = Shoelace(lines)
+        sum_ = sl.shoelace_area()
 
         return sum_
