@@ -2,6 +2,10 @@ class Intervals:
 
     def __init__(self, rules):
         self.rules = rules
+
+    
+    def count(self, ranges, ):
+        pass
     
     def traverse_single(self):
         x = [(1, 4000)]
